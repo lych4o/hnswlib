@@ -439,6 +439,11 @@ class HierarchicalNSW : public AlgorithmInterface<dist_t> {
         return top_candidates;
     }
 
+    dist_t compute_single_onbase(const void* q_vec, const void *base_vec, uint32_t vec_sz, uint32_t vec_id) {
+        char *ep_data = (char*)(base_vec + 1ull * vec_sz * vec_id);
+        dist_t dist = fstdistfunc_(q_vec, ep_data, dist_func_param_);
+        return dist;
+    }
 
     void getNeighborsByHeuristic2(
         std::priority_queue<std::pair<dist_t, tableint>, std::vector<std::pair<dist_t, tableint>>, CompareByFirst> &top_candidates,

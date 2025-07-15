@@ -102,6 +102,9 @@ if(HNSWLIB_EXAMPLES)
     add_executable(multiThread_replace_test tests/cpp/multiThread_replace_test.cpp)
     target_link_libraries(multiThread_replace_test hnswlib)
 
-    add_executable(main tests/cpp/main.cpp tests/cpp/sift_1b.cpp tests/cpp/sift_1m.cpp)
+    add_executable(main tests/cpp/main.cpp tests/cpp/sift_1b.cpp tests/cpp/sift_1m.cpp tests/cpp/sift_100m.cpp)
     target_link_libraries(main hnswlib)
+
+    add_executable(cgt tests/cpp/compute_gt.cc)
+    target_link_libraries(cgt hnswlib)
 endif()

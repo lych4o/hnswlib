@@ -224,16 +224,21 @@ test_vs_recall(
     size_t vecdim,
     vector<std::priority_queue<std::pair<float, labeltype>>> &answers,
     size_t k) {
-    vector<size_t> efs;  // = { 10,10,10,10,10 };
+    vector<size_t> efs = {172, 174, 176, 178};  // = { 10,10,10,10,10 };
+    /*
     for (int i = k; i < 30; i++) {
         efs.push_back(i);
     }
     for (int i = 30; i < 100; i += 10) {
         efs.push_back(i);
     }
-    for (int i = 100; i < 500; i += 40) {
+    */
+
+    /*
+    for (int i = 100; i <= 500; i += 40) {
         efs.push_back(i);
     }
+    */
     for (size_t ef : efs) {
         appr_alg.setEf(ef);
         appr_alg.metric_distance_computations = 0;
@@ -259,23 +264,23 @@ inline bool exists_test(const std::string &name) {
 #define USING_SMALLSIFT_ \
     vecsize = 10000; \
     qsize = 100; \
-    const char *path_q = "/data/users/ycli/siftsmall/siftsmall_query.fvecs"; \
-    const char *path_data = "/data/users/ycli/siftsmall/siftsmall_base.fvecs"; \
+    const char *path_q = "/home/ycli/siftsmall/siftsmall_query.fvecs"; \
+    const char *path_data = "/home/ycli/siftsmall/siftsmall_base.fvecs"; \
     snprintf(path_index, sizeof(path_index), "siftsmall_ef_%d_M_%d.bin", efConstruction, M); \
-    snprintf(path_gt, sizeof(path_gt), "/data/users/ycli/siftsmall/siftsmall_groundtruth.ivecs"); \
+    snprintf(path_gt, sizeof(path_gt), "/home/ycli/siftsmall/siftsmall_groundtruth.ivecs"); \
 
 #define USING_SIFT1M_ \
     vecsize = 1000000; \
     qsize = 10000; \
-    const char *path_q = "/data/users/ycli/sift/sift_query.fvecs"; \
-    const char *path_data = "/data/users/ycli/sift/sift_base.fvecs"; \
+    const char *path_q = "/home/ycli/sift/sift_query.fvecs"; \
+    const char *path_data = "/home/ycli/sift/sift_base.fvecs"; \
     snprintf(path_index, sizeof(path_index), "sift_ef_%d_M_%d.bin", efConstruction, M); \
-    snprintf(path_gt, sizeof(path_gt), "/data/users/ycli/sift/sift_groundtruth.ivecs"); \
+    snprintf(path_gt, sizeof(path_gt), "/home/ycli/sift/sift_groundtruth.ivecs"); \
 
 
 void sift_test1M() {
-    int efConstruction = 40;
-    int M = 16;
+    int efConstruction = 512;
+    int M = 32;
 
     size_t result_num = 100;
     size_t vecdim = 128;
